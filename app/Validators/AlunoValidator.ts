@@ -25,7 +25,7 @@ export default class AlunoValidator {
    */
   public schema = schema.create({
 
-    nome: schema.string.optional([
+    nome: schema.string.nullableAndOptional([
       rules.unique({
         column: 'nome',
         table: 'alunos'
@@ -73,10 +73,7 @@ export default class AlunoValidator {
     ]),
 
     cep: schema.number.optional([
-      rules.range(0, 10),
-      rules.alphaNum({
-        allow: ['underscore']
-      })
+      rules.range(0, 9999999999)
     ]),
 
     logadouro: schema.string.optional([

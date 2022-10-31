@@ -5,7 +5,9 @@ import ProfessorValidator from "App/Validators/ProfessorValidator";
 
 export default class ProfessorsController {
     
-    index(){
+    async index(/*{request, auth}*/){
+//      const dados = request.only(["email"])
+//      await auth.use('web').attempt(dados.email)
         return Professor.query()
      }
  
@@ -14,7 +16,6 @@ export default class ProfessorsController {
         const dados = await request.validate(ProfessorValidator)
         /** only(["nome", "cpf", "matricula", "salario", "email",
          *  "telefone", "cep", "logadouro", "complemento", "numero", "bairro"]) */
-    
          return Professor.create(dados)
 
      }

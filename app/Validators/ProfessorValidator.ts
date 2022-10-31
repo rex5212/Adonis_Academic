@@ -29,7 +29,7 @@ export default class ProfessorValidator {
       rules.maxLength(100)
     ]),
 
-    cpf: schema.number.nullableAndOptional([
+    cpf: schema.string.nullableAndOptional([
       rules.maxLength(11),
       rules.unique({
         table: 'professors',

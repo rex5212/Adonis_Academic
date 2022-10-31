@@ -10,7 +10,7 @@ export default class Professor extends BaseModel {
   public nome: string
 
   @column()
-  public cpf: number
+  public cpf: string
 
   @column()
   public matricula: string
