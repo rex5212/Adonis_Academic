@@ -44,7 +44,7 @@ export default class DisciplinasController {
     async update({request}){
 
         const id = request.param('id')
-        const dados = await request.validete(DisciplinaValidator)
+        const dados = await request.validate(DisciplinaValidator)
         /** only(["nome", "cursos_id"]) */
         const updat = await Disciplina.findOrFail(id)
         updat.merge(dados).save()

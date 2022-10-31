@@ -25,11 +25,7 @@ export default class AulaValidator {
    */
   public schema = schema.create({
     
-    data: schema.date.nullableAndOptional({}, [
-      rules.alphaNum({
-        allow: ['space', 'dash', 'underscore']
-      })
-    ]),
+    data: schema.date.nullableAndOptional({}, []),
     
     conteudo: schema.string.nullableAndOptional([
       rules.unique({

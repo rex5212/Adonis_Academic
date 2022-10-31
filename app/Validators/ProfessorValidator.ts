@@ -30,7 +30,8 @@ export default class ProfessorValidator {
     ]),
 
     cpf: schema.string.nullableAndOptional([
-      rules.maxLength(11),
+      rules.maxLength(14),
+      rules.minLength(11),
       rules.unique({
         table: 'professors',
         column: 'cpf'
@@ -38,11 +39,14 @@ export default class ProfessorValidator {
     ]),
 
     matricula: schema.string.nullableAndOptional([
-      rules.maxLength(20)
+      rules.maxLength(20),
+      rules.minLength(1),
     ]),
 
     salario: schema.string.nullableAndOptional([
-      rules.maxLength(100)
+      rules.maxLength(100),
+      rules.minLength(3),
+      rules.alphaNum()
     ]),
 
     email: schema.string.nullableAndOptional([

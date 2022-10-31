@@ -113,8 +113,8 @@ export default class AlunoValidator {
    *
    */
   public messages: CustomMessages = {
-    'string': 'O campo não aceita numeros',
-    'number': 'O campo não aceita Letras',
+    alphaNum: 'O campo so aceita numeros',
+    alpha: 'O campo não aceita Letras',
     'matricula.unique': 'Essa Matricula ja foi criada',
     'numero.unique': 'Esse numero ja fou utilizado',
     'nome.unique': 'Esse nome ja foi cadastrado',

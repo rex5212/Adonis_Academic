@@ -2,7 +2,6 @@
 
 import Aluno from "App/Models/Aluno"
 import AlunoValidator from "App/Validators/AlunoValidator"
-import AulaValidator from "App/Validators/AulaValidator"
 
 export default class AlunosController {
 
@@ -32,7 +31,7 @@ export default class AlunosController {
     async update({request}){
 
         const id = request.param('id')
-        const dados = await request.validate(AulaValidator)
+        const dados = await request.validate(AlunoValidator)
         /*only(["nome", "cpf", "matricula", "email", "cep", "logadouro", "complemento", "numero", "bairro"])*/
         const update = await Aluno.findOrFail(id)
         update.merge(dados).save()
