@@ -30,5 +30,7 @@ Route.resource('/turmas', 'TurmasController').apiOnly()
 Route.resource('/turma_alunos', 'TurmaAlunosController').apiOnly()
 Route.resource('/aulas', 'AulasController').apiOnly()
 Route.resource('/chamadas', 'ChamadasController').apiOnly()
-
+Route.resource('/user', 'UsersController').apiOnly()
+Route.resource('/apitoken', 'ApiTokenController').apiOnly()
+// adiciona route group e mid
 

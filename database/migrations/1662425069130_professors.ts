@@ -18,8 +18,6 @@ export default class extends BaseSchema {
       table.string('numero', 20)
       table.string('bairro', 100)
 
-
-
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

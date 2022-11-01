@@ -7,10 +7,10 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('nome', 50).notNullable()
-      table.integer('professor_id').unsigned().references('id').inTable('professors')
-      table.integer('semestre_id').unsigned().references('id').inTable('semestres')
-      table.integer('disciplina_id').unsigned().references('id').inTable('disciplinas')
-      table.integer('sala_id').unsigned().references('id').inTable('salas')
+      table.integer('professor_id').unsigned().references('id').inTable('professors').onDelete('CASCADE')
+      table.integer('semestre_id').unsigned().references('id').inTable('semestres').onDelete('CASCADE')
+      table.integer('disciplina_id').unsigned().references('id').inTable('disciplinas').onDelete('CASCADE')
+      table.integer('sala_id').unsigned().references('id').inTable('salas').onDelete('CASCADE')
       table.string('turno', 1).notNullable()
 
 
