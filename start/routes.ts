@@ -20,17 +20,20 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.resource('/cursos', 'CursosController').apiOnly()
-Route.resource('/salas', 'SalasController').apiOnly()
-Route.resource('/disciplinas', 'DisciplinasController').apiOnly()
-Route.resource('/alunos', 'AlunosController').apiOnly()
-Route.resource('/semestres', 'SemestresController').apiOnly()
-Route.resource('/professors', 'ProfessorsController').apiOnly()
-Route.resource('/turmas', 'TurmasController').apiOnly()
-Route.resource('/turma_alunos', 'TurmaAlunosController').apiOnly()
-Route.resource('/aulas', 'AulasController').apiOnly()
-Route.resource('/chamadas', 'ChamadasController').apiOnly()
-Route.resource('/user', 'UsersController').apiOnly()
-Route.resource('/apitoken', 'ApiTokenController').apiOnly()
+Route.group(() => {
+    Route.resource('/cursos', 'CursosController').apiOnly()
+    Route.resource('/salas', 'SalasController').apiOnly()
+    Route.resource('/disciplinas', 'DisciplinasController').apiOnly()
+    Route.resource('/alunos', 'AlunosController').apiOnly()
+    Route.resource('/semestres', 'SemestresController').apiOnly()
+    Route.resource('/professors', 'ProfessorsController').apiOnly()
+    Route.resource('/turmas', 'TurmasController').apiOnly()
+    Route.resource('/turma_alunos', 'TurmaAlunosController').apiOnly()
+    Route.resource('/aulas', 'AulasController').apiOnly()
+    Route.resource('/chamadas', 'ChamadasController').apiOnly()
+    Route.resource('/user', 'UsersController').apiOnly()
+    Route.resource('/apitoken', 'ApiTokensController').apiOnly()
+}).middleware('auth:api')
+
 // adiciona route group e mid
 

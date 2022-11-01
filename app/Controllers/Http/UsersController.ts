@@ -6,7 +6,7 @@ import User from "App/Models/User"
 export default class UsersController {
 
     async store({request}){      
-        const dados = request.all()
+        const dados = request.only(['email', 'password', 'rememberMeToken'])
         return User.create(dados)
     }
 
