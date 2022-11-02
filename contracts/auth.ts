@@ -5,6 +5,8 @@
  * file.
  */
 
+// import Aluno from 'App/Models/Aluno'
+// import Professor from 'App/Models/Professor'
 import User from 'App/Models/User'
 
 declare module '@ioc:Adonis/Addons/Auth' {
@@ -37,6 +39,18 @@ declare module '@ioc:Adonis/Addons/Auth' {
       implementation: LucidProviderContract<typeof User>
       config: LucidProviderConfig<typeof User>
     }
+
+    /*
+    aluno: {
+      implementation: LucidProviderContract<typeof Aluno>
+      config: LucidProviderConfig<typeof Aluno>
+    }
+    professor: {
+      implementation: LucidProviderContract<typeof Professor>
+      config: LucidProviderConfig<typeof Professor>
+    }
+    */
+
   }
 
   /*
@@ -83,6 +97,20 @@ declare module '@ioc:Adonis/Addons/Auth' {
       config: OATGuardConfig<'user'>
       client: OATClientContract<'user'>
     }
+
+
+    /*alunoapi: {
+      implementation: OATGuardContract<'aluno', 'alunoapi'>
+      config: OATGuardConfig<'aluno'>
+      client: OATClientContract<'aluno'>
+    }
+    professorapi: {
+      implementation: OATGuardContract<'professor', 'professorapi'>
+      config: OATGuardConfig<'professor'>
+      client: OATClientContract<'professor'>
+    }*/
+
+
     /*
     |--------------------------------------------------------------------------
     | Basic Auth Guard
