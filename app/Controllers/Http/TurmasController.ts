@@ -7,6 +7,8 @@ export default class TurmasController {
     
     async index(){
         return Turma.query()
+                    .select(["id", "nome", "professor_id", "semestre_id",
+                    "disciplina_id", "sala_id", "turno"])
                     .preload('professores')
                     .preload('semeste')
                     .preload('sala')
@@ -15,42 +17,29 @@ export default class TurmasController {
      }
  
     async store({request}){
-
         const dados = await request.validate(TurmaValidator)
-        /** only(["nome", "professor_id", "semestre_id",
-         *  "disciplina_id", "sala_id", "turno"]) */
-       
-            return Turma.create(dados)
-
+        return Turma.create(dados)
      }
 
     async show({request}){
-
         const id = request.param('id')
         const show = await Turma.findOrFail(id)
         return show
-
     }
 
     async update({request}){
-
         const id = request.param('id')
         const dados = await request.validate(TurmaValidator)
-        /** only(["nome", "professor_id",
-         *  "semestre_id", "disciplina_id", "sala_id", "turno"]) */
         const updat = await Turma.findOrFail(id)
         updat.merge(dados).save()
         return updat
-
     }
 
     async destroy({request}){
-
         const id = request.param('id')
         const delet = await Turma.findOrFail(id)
         delet.delete()
         return delet
-        
     }
      
 }
