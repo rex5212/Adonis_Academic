@@ -20,6 +20,12 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.resource('/user', 'UsersController').apiOnly()
+Route.resource('/apitoken', 'ApiTokensController').apiOnly()
+
+Route.get('/github/redirect', 'GitHubsController.Gitredirect')
+Route.get('/github/callback', 'GitHubsController.GitCallback')
+
 Route.group(() => {
     Route.resource('/cursos', 'CursosController').apiOnly()
     Route.resource('/salas', 'SalasController').apiOnly()
@@ -31,8 +37,6 @@ Route.group(() => {
     Route.resource('/turma_alunos', 'TurmaAlunosController').apiOnly()
     Route.resource('/aulas', 'AulasController').apiOnly()
     Route.resource('/chamadas', 'ChamadasController').apiOnly()
-    Route.resource('/user', 'UsersController').apiOnly()
-    Route.resource('/apitoken', 'ApiTokensController').apiOnly()
 }).middleware('auth:api')
 
 // adiciona route group e mid
