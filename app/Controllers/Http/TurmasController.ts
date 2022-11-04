@@ -5,15 +5,26 @@ import TurmaValidator from "App/Validators/TurmaValidator";
 
 export default class TurmasController {
     
-    async index(){
-        return Turma.query()
-                    .select(["id", "nome", "professor_id", "semestre_id",
-                    "disciplina_id", "sala_id", "turno"])
+    async index({request}){
+        const {professorId, semestreId, disciplinaId, salaId} = request.all()
+        const turma = Turma.query()
+                    .select(["id", "nome", "professorId", "semestreId",
+                    "disciplinaId", "salaId", "turno"])
                     .preload('professores')
                     .preload('semeste')
                     .preload('sala')
                     .preload('disciplina')
                     .preload('alunos')
+        if (professorId) {
+            turma.where('professorId', professorId)
+        } else if (semestreId) {
+            turma.where('semestreId', semestreId)
+        } else if (disciplinaId) {
+            turma.where('disciplinaId', disciplinaId)
+        } else if (salaId) {
+            turma.where('salaId', salaId)
+        }
+        return turma
      }
  
     async store({request}){

@@ -5,10 +5,15 @@ import SemestreValidator from "App/Validators/SemestreValidator";
 
 export default class SemestresController {
     
-    async index(){
-        return await Semestre.query()
-                             .select(["id", "nome", "data_inicio", "data_fim"])
-                             .preload("turmas")
+    async index({request}){
+        const {nome} = request.all()
+        const semestre = Semestre.query()
+                                 .select(["id", "nome", "data_inicio", "data_fim"])
+                                 .preload("turmas")
+        if (nome) {
+            semestre.where('nome', nome)
+        }
+        return semestre
      }
  
     async store({request}){

@@ -4,11 +4,16 @@ import ProfessorValidator from "App/Validators/ProfessorValidator";
 
 export default class ProfessorsController {
     
-    async index(){
-        return await Professor.query()
-                        .select(["id", "nome", "cpf", "matricula", "salario", "email",
-                        "telefone", "cep", "logadouro", "complemento", "numero", "bairro"])
-                        .preload("turmas")
+    async index({request}){
+        const {bairro} =  request.all()
+        const professor = Professor.query()
+                                   .select(["id", "nome", "cpf", "matricula", "salario", "email",
+                                   "telefone", "cep", "logadouro", "complemento", "numero", "bairro"])
+                                   .preload("turmas")
+        if (bairro) {
+            professor.where('bairro', bairro)
+        }
+        return professor                          
      }
  
      async store({request}){

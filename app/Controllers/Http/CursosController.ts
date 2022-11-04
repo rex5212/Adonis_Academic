@@ -6,10 +6,17 @@ import CursoValidator from "App/Validators/CursoValidator"
 
 export default class CursosController {
 
-    async index(){
-       return await Curso.query()
-                   .select(['id', 'nome', 'duracao', 'modalidade'])
-                   .preload('disciplinas')
+    async index({request}){
+        const {duracao, modalidade} = request.all()
+        const curso = Curso.query()
+                           .select(['id', 'nome', 'duracao', 'modalidade'])
+                           .preload('disciplinas')
+        if (duracao) {
+            curso.where('duracao', duracao)            
+        } else if (modalidade) {
+            curso.where('modalidade', modalidade)
+        }
+        return curso
     }
 
     async store({request}){

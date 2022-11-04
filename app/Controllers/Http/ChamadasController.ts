@@ -5,11 +5,16 @@ import ChamadaValidator from "App/Validators/ChamadaValidator";
 
 export default class ChamadasController {
 
-    async index(){
-        return await Chamada.query() 
-                      .preload('aula')
-                      .preload('aluno')
-                      .select(["id", "aula_id", "aluno_id", "presenca"])
+    async index({request}){
+        const {aulaId} = request.all()
+        const chamada = Chamada.query() 
+                               .preload('aula')
+                               .preload('aluno')
+                               .select(["id", "aulaId", "alunoId", "presenca"])
+        if (aulaId) {
+            chamada.where("aulaId", aulaId)
+        }
+        return chamada
      }
  
     async store({request}){

@@ -5,11 +5,18 @@ import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator";
 
 export default class TurmaAlunosController {
     
-    async index(){
-        return await TurmaAluno.query()
-                               .select(["id", "turma_id", "aluno_id"])
-                               .preload("aluno")
-                               .preload("turma")
+    async index({request}){
+        const {turmaId, alunoId} = request.all()
+        const turmaaluno = TurmaAluno.query()
+                                     .select(["id", "turmaId", "alunoId"])
+                                     .preload("aluno")
+                                     .preload("turma")
+        if (turmaId) {
+            turmaaluno.where('turmaId', turmaId)
+        } else if (alunoId) {
+            turmaaluno.where('alunoId', alunoId)
+        }
+        return turmaaluno
      }
  
      async store({request}){

@@ -5,12 +5,20 @@ import AlunoValidator from "App/Validators/AlunoValidator"
 
 export default class AlunosController {
 
-    async index(){
-        return await Aluno.query()
-                          .preload('turmas')
-                          .preload("chamadas")
-                          .select(["id", "nome", "cpf", "matricula", "email", "cep", 
-                          "logadouro", "complemento", "numero", "bairro"])
+    async index({request}){
+        const {bairro, nome} = request.all()
+        const aluno = Aluno.query()
+                           .preload('turmas')
+                           .preload("chamadas")
+                           .select(["id", "nome", "cpf", "matricula", "email", "cep", 
+                           "logadouro", "complemento", "numero", "bairro"])
+        if(bairro){
+            aluno.where('bairro', bairro)
+            }
+        else if(nome){
+            aluno.where('nome', nome)
+            }
+        return aluno
      }
  
      async store({request}){

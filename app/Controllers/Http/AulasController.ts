@@ -5,11 +5,19 @@ import AulaValidator from "App/Validators/AulaValidator"
 
 export default class AulasController {
 
-    async index(){
-        return await Aula.query()
-                   .preload('turma')
-                   .preload("chamadas")
-                   .select(["id", "data", "conteudo", "turma_id"])
+    async index({request}){
+        const {turmaId, conteudo} = request.all()
+        const aula = Aula.query()
+                         .preload('turma')
+                         .preload("chamadas")
+                         .select(["id", "data", "conteudo", "turmaId"])
+        if(turmaId){
+            aula.where('turmaId', turmaId)
+            }
+        else if(conteudo){
+            aula.where('conteudo', conteudo)
+            }
+        return aula
      }
  
     async store({request}){

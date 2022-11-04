@@ -5,10 +5,17 @@ import SalaValidator from "App/Validators/SalaValidator";
 
 export default class SalasController {
     
-    async index(){
-        return await Sala.query()
+    async index({request}){
+        const {tipo, capacidade} = request.all()
+        const sala = Sala.query()
                          .select(["id", "nome", "capacidade", "tipo"])
                          .preload("turmas")
+        if (tipo) {
+            sala.where('tipo', tipo)
+        } else if (capacidade){
+            sala.where('capacidade', capacidade)
+        }
+        return sala
      }
  
     async store({request}){
