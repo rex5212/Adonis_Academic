@@ -39,5 +39,3 @@ Route.group(() => {
     Route.resource('/chamadas', 'ChamadasController').apiOnly()
 }).middleware('auth:api')
 
-// adiciona route group e mid
-
